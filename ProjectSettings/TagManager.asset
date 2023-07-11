@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Background-1
+  - Wall-T
+  - Wall-B
+  - Wall-R
+  - Wall-L
   layers:
   - Default
   - TransparentFX
