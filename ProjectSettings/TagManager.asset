@@ -9,6 +9,7 @@ TagManager:
   - Wall-B
   - Wall-R
   - Wall-L
+  - Enemy
   layers:
   - Default
   - TransparentFX
