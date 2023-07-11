@@ -18,14 +18,14 @@ public class MoveBackground : MonoBehaviour
     void Update()
     {
         // Move the game object forward for the first 5 seconds
-        if (timeElapsed < 5f && bgTransform != null)
+        if (timeElapsed < 5.5f && bgTransform != null)
         {
-            bgTransform.Translate(Vector3.up * Time.deltaTime * .25f);
+            bgTransform.Translate(Vector3.up * Time.deltaTime * .5f);
         }
         // Move the game object backward for the next 5 seconds
-        else if (timeElapsed < 10f && bgTransform != null)
+        else if (timeElapsed < 11f && bgTransform != null)
         {
-            bgTransform.Translate(Vector3.down * Time.deltaTime * .25f);
+            bgTransform.Translate(Vector3.down * Time.deltaTime * .5f);
         }
         else
         {

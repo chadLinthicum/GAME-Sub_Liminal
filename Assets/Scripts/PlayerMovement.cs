@@ -39,12 +39,4 @@ public class PlayerMovement : MonoBehaviour
             playerObject.transform.rotation = Quaternion.RotateTowards(playerObject.transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-{
-    if (collision.gameObject.CompareTag("Wall-L") || collision.gameObject.CompareTag("Wall-R")  || collision.gameObject.CompareTag("Wall-T")  || collision.gameObject.CompareTag("Wall-B"))
-    {
-
-    }
-}
 }
