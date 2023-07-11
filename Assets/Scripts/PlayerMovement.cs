@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        Debug.Log(horizontalInput);
 
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
         transform.position += movement * Time.deltaTime * moveSpeed;
