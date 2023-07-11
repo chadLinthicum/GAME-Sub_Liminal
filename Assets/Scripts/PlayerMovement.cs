@@ -4,9 +4,12 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float rotateSpeed = 180f;
+    public bool canMove = true;
 
     void Update()
     {
+        if (canMove){
+        //Locks z-axis
         Vector3 newPos = transform.position;
         newPos.z = 2;
         transform.position = newPos;
@@ -26,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         {
             RotatePlayer(90f);
         }
+        }
     }
 
     // Rotate the player object towards the specified Y-axis rotation
@@ -38,4 +42,13 @@ public class PlayerMovement : MonoBehaviour
             playerObject.transform.rotation = Quaternion.RotateTowards(playerObject.transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.CompareTag("Enemy"))
+    {
+        Debug.Log("GAVE OVER");
+        canMove = false;
+    }
+}
 }
