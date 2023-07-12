@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallMovement : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
+
+    private float elapsedTime = 0f;
 
     public float speedX = .5f; // The speed at which to move the object
     public float speedY = .5f; // The speed at which to move the object
@@ -17,12 +21,12 @@ public class BallMovement : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip bubbleGrow;
 
+    public float scaleValue = 0f;
+    public float speedValue = 0f;
+
 
     void Update()
     {
-
-        Debug.Log(Mathf.RoundToInt(Time.time));
-
         //Locks z-axis
         Vector3 newPos = transform.position;
         newPos.z = 2;
@@ -38,10 +42,9 @@ public class BallMovement : MonoBehaviour
         // Set the object's new position
         transform.position = pos;
 
-        int timer = Mathf.RoundToInt(Time.time);
+        int timer = Mathf.RoundToInt(Time.timeSinceLevelLoad);
 
-        float scaleValue = 0f;
-        float speedValue = 0f;
+
         switch (timer)
         {
             case 7:
@@ -157,7 +160,7 @@ public class BallMovement : MonoBehaviour
         }
 
         Transform objectTransform = transform;
-        objectTransform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
+        objectTransform.localScale = new Vector3(scaleValue, scaleValue, 0.01f);
 
         speedX = speedValue * Mathf.Sign(speedX);
         speedY = speedValue * Mathf.Sign(speedY);

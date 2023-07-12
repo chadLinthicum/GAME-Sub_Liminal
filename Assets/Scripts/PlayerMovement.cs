@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,15 +14,25 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip gameOver;
     public AudioClip backgroundMusic;
 
+    public Text uiScoreTime;
+
+    public bool scoreChanged = false;
+
     private void Start()
     {
         audioSourceBackground.clip = backgroundMusic;
         audioSourceBackground.loop = true;
         audioSourceBackground.Play();
+        uiScoreTime.enabled = false;
+
+        // Prevent this game object from being destroyed when a new scene is loaded
+        DontDestroyOnLoad(audioSourceBackground);
     }
 
     void Update()
     {
+
+
         if (canMove)
         {
             //Locks z-axis
@@ -63,6 +76,13 @@ public class PlayerMovement : MonoBehaviour
             audioSource.clip = gameOver;
             audioSource.Play();
             canMove = false;
+
+            if (scoreChanged == false)
+            {
+                uiScoreTime.enabled = true;
+                uiScoreTime.text = "Seconds: " + Mathf.RoundToInt(Time.time);
+                scoreChanged = true;
+            }
         }
     }
 }
