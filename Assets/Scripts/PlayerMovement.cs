@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove = true;
 
     public AudioSource audioSource;
-    public AudioSource audioSourceBackground;
+
     public AudioClip gameOver;
     public AudioClip backgroundMusic;
 
@@ -20,19 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        audioSourceBackground.clip = backgroundMusic;
-        audioSourceBackground.loop = true;
-        audioSourceBackground.Play();
         uiScoreTime.enabled = false;
-
-        // Prevent this game object from being destroyed when a new scene is loaded
-        DontDestroyOnLoad(audioSourceBackground);
     }
 
     void Update()
     {
-
-
         if (canMove)
         {
             //Locks z-axis
@@ -80,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
             if (scoreChanged == false)
             {
                 uiScoreTime.enabled = true;
-                uiScoreTime.text = "Seconds: " + Mathf.RoundToInt(Time.time);
+                uiScoreTime.text = "You Stayed For " + Mathf.RoundToInt(Time.time) + " Liminal Seconds.";
                 scoreChanged = true;
             }
         }
