@@ -6,29 +6,42 @@ public class PlayerMovement : MonoBehaviour
     public float rotateSpeed = 180f;
     public bool canMove = true;
 
+    public AudioSource audioSource;
+    public AudioSource audioSourceBackground;
+    public AudioClip gameOver;
+    public AudioClip backgroundMusic;
+
+    private void Start()
+    {
+        audioSourceBackground.clip = backgroundMusic;
+        audioSourceBackground.loop = true;
+        audioSourceBackground.Play();
+    }
+
     void Update()
     {
-        if (canMove){
-        //Locks z-axis
-        Vector3 newPos = transform.position;
-        newPos.z = 2;
-        transform.position = newPos;
-
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
-        transform.position += movement * Time.deltaTime * moveSpeed;
-
-        // Rotate the player object on its Y-axis when moving left or right
-        if (horizontalInput < 0f)
+        if (canMove)
         {
-            RotatePlayer(270f);
-        }
-        else if (horizontalInput > 0f)
-        {
-            RotatePlayer(90f);
-        }
+            //Locks z-axis
+            Vector3 newPos = transform.position;
+            newPos.z = 2;
+            transform.position = newPos;
+
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+
+            Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
+            transform.position += movement * Time.deltaTime * moveSpeed;
+
+            // Rotate the player object on its Y-axis when moving left or right
+            if (horizontalInput < 0f)
+            {
+                RotatePlayer(270f);
+            }
+            else if (horizontalInput > 0f)
+            {
+                RotatePlayer(90f);
+            }
         }
     }
 
@@ -44,11 +57,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-{
-    if (collision.gameObject.CompareTag("Enemy"))
     {
-        Debug.Log("GAVE OVER");
-        canMove = false;
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            audioSource.clip = gameOver;
+            audioSource.Play();
+            canMove = false;
+        }
     }
-}
 }

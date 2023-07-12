@@ -7,19 +7,23 @@ public class BallMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public float speedX = .5f; // The speed at which to move the object
     public float speedY = .5f; // The speed at which to move the object
     public string direction = "upRight";
-    
 
-    void Update() {
+    public AudioSource audioSource;
+    public AudioClip bubbleGrow;
+
+
+    void Update()
+    {
 
         Debug.Log(Mathf.RoundToInt(Time.time));
-    
-         //Locks z-axis
+
+        //Locks z-axis
         Vector3 newPos = transform.position;
         newPos.z = 2;
         transform.position = newPos;
@@ -36,47 +40,127 @@ public class BallMovement : MonoBehaviour
 
         int timer = Mathf.RoundToInt(Time.time);
 
-    float scaleValue = 0f;
-    float speedValue = 0f;
-    switch (timer)
-    {
-        case 7:
-            scaleValue = 0.15f;
-            speedValue = 1f;
-            break;
-        case 14:
-            scaleValue = 0.2f;
-            speedValue = 1.5f;
-            break;
-        case 21:
-            scaleValue = 0.25f;
-            speedValue = 2f;
-            break;
-        case 28:
-            scaleValue = 0.3f;
-            speedValue = 2.5f;
-            break;
+        float scaleValue = 0f;
+        float speedValue = 0f;
+        switch (timer)
+        {
+            case 7:
+                scaleValue = 0.15f;
+                speedValue = 1f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 14:
+                scaleValue = 0.2f;
+                speedValue = 1.1f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 21:
+                scaleValue = 0.25f;
+                speedValue = 1.2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 28:
+                scaleValue = 0.3f;
+                speedValue = 1.2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
             case 35:
-            scaleValue = 0.35f;
-            speedValue = 3f;
-            break;
+                scaleValue = 0.35f;
+                speedValue = 1.4f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
             case 42:
-            scaleValue = 0.4f;
-            speedValue = 3.5f;
-            break;
+                scaleValue = 0.4f;
+                speedValue = 1.5f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
             case 49:
-            scaleValue = 0.45f;
-            speedValue = 4f;
-            break;
-        default:
-            return;
-    }
+                scaleValue = 0.45f;
+                speedValue = 1.6f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 56:
+                scaleValue = 0.5f;
+                speedValue = 1.7f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 63:
+                scaleValue = 0.55f;
+                speedValue = 1.8f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 70:
+                scaleValue = 0.6f;
+                speedValue = 1.9f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 77:
+                scaleValue = 0.65f;
+                speedValue = 2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 84:
+                scaleValue = 0.7f;
+                speedValue = 2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 91:
+                scaleValue = 0.75f;
+                speedValue = 2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 98:
+                scaleValue = 0.8f;
+                speedValue = 2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 105:
+                scaleValue = 0.85f;
+                speedValue = 2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 112:
+                scaleValue = 0.9f;
+                speedValue = 2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 119:
+                scaleValue = 0.95f;
+                speedValue = 2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            case 126:
+                scaleValue = 1f;
+                speedValue = 2f;
+                audioSource.clip = bubbleGrow;
+                audioSource.Play();
+                break;
+            default:
+                return;
+        }
 
-    Transform objectTransform = transform;
-    objectTransform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
+        Transform objectTransform = transform;
+        objectTransform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
 
-    speedX = speedValue * Mathf.Sign(speedX);
-    speedY = speedValue * Mathf.Sign(speedY);
+        speedX = speedValue * Mathf.Sign(speedX);
+        speedY = speedValue * Mathf.Sign(speedY);
     }
 
     private void OnCollisionEnter(Collision collision)
